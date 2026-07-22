@@ -53,7 +53,7 @@ ostream& operator << (ostream& out, const Matrix& tempMatrix) {
 */
 void Matrix::reshape(unsigned int new_num_rows, unsigned int new_num_columns) {
 	if (new_num_rows * new_num_columns != num_of_rows * num_of_columns) {
-		throw std::exception("Illegal reshaping");
+		throw std::runtime_error("Reshape failed: new dimensions do not match the total number of elements.");
 	}
 	else {
 		vector<vector<char>> tempData(new_num_rows, vector<char>(new_num_columns));
