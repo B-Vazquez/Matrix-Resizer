@@ -13,17 +13,29 @@ Matrix::Matrix(unsigned int num_of_rows, unsigned int num_of_columns)
 	@return: Input stream after loading the matrix object
 */
 istream& operator >> (istream& in, Matrix& tempMatrix) {
-	in >> tempMatrix.num_of_rows >> tempMatrix.num_of_columns;
+	unsigned int num_rows = 0;
+	unsigned int num_columns = 0;
 
-	char tempChar;
+	if (!(in >> num_rows >> num_columns) || num_rows >= 100 || num_columns >= 100 || num_rows == 0 || num_columns == 0) {
+		throw std::runtime_error("Error: Invalid input for current matrix size.");
+	}
 
-	for (unsigned int i = 0; i < tempMatrix.num_of_rows; i++) {
-		tempMatrix.data.push_back(vector<char>(tempMatrix.num_of_columns));
-		for (unsigned int j = 0; j < tempMatrix.num_of_columns; j++) {
-			in >> tempChar;
-			tempMatrix.data[i][j] = tempChar;
+	vector<vector<char>> tempData(num_rows, vector<char>(num_columns));
+	std::string tempString;
+
+	for (unsigned int i = 0; i < num_rows; i++) {
+		for (unsigned int j = 0; j < num_columns; j++) {
+			// Verifies there is something to pass into the matrix alongside verifying that the registered data is a single character.
+			if (!(in >> tempString) || tempString.length() != 1) {
+				throw std::runtime_error("Error: Invalid input for matrix data.");
+			}
+			tempData[i][j] = tempString.c_str()[0];
 		}
 	}
+
+	tempMatrix.num_of_rows = num_rows;
+	tempMatrix.num_of_columns = num_columns;
+	tempMatrix.data = tempData;
 	return in;
 }
 
