@@ -5,24 +5,30 @@
 
 using namespace std;
 
-// Function used in the main() function
+// Validates the reshape dimensions that follow the matrix data in the input stream.
 void validateNewRowsAndColumns(istream& in);
 
 int main(int argc, char* argv[]) {
-    // Open the input file.
+    // Open the source matrix file used by the current program.
     ifstream inputFile("before.txt");
 
-    // Test whether the input file was successfully opened.
+    // Report a missing input file immediately so the program exits cleanly.
     if (!inputFile) {
-        cout << argv[0] << endl;
-        cout << "Error: input file does not exist. Please ensure the input file is stored in the above directory." << endl;
+        cerr << argv[0] << endl;
+        cerr << "Error: input file does not exist. Please ensure the input file is stored in the above directory." << endl;
         return -1;
     }
 
-    // Open the output file.
+    // Open the destination file used to store the reshaped result.
     ofstream outputFile("after.txt");
 
-    Matrix matrix; // Matrix object
+    if (!outputFile) {
+        cerr << "Error: Could not create or open 'after.txt' in the current working directory." << endl;
+        inputFile.close();
+        return -1;
+    }
+
+    Matrix matrix; // Holds the input matrix until it is reshaped.
 
     try{
         // Passes the matrix stored in the input file to the matrix object

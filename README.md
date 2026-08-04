@@ -1,7 +1,50 @@
 # Matrix Resizer
 
-This programs takes in a matrix (max size 99x99) and resizes the matrix (if possible) to your desired size.
+Matrix Resizer is a small C++ program that reads a matrix from a text file, validates the matrix contents, and then reshapes it into a new size when the total number of elements remains unchanged.
 
-An example of a valid input file is provided alongside it's expected output. The program currently doesn't validate the input file to (Ex. the input matrix doesn't match the pre-defined size), using an invalid input file will causes errors and/or crashes.
+## What the program does
 
-If running the program within VSCode via the .sln, ensure the input file is in the Exam3 folder (initially has a copy of the example input file which can be moved if needed), otherwise the file (or a copy) needs to be moved within the directory listed in the error message when the code is ran.
+The program expects an input file named `before.txt` that contains:
+
+1. The original matrix dimensions as `rows columns`
+2. Exactly `rows * columns` single-character values
+3. The new target dimensions as `new_rows new_columns`
+
+After reading the data, the program writes the reshaped matrix to `after.txt`.
+
+## Build and run
+
+From the workspace root, compile and run the project with your preferred C++ toolchain. In Visual Studio Code, the provided solution can be used to build and run the project.
+
+## Example input format
+
+```text
+3 4
+A B C D
+E F G H
+I J K L
+2 6
+```
+
+This example describes a `3 x 4` matrix followed by the desired `2 x 6` size.
+
+## Notes and limitations
+
+- The program currently uses fixed file names: `before.txt` for input and `after.txt` for output.
+- Matrix dimensions must be greater than `0` and less than `100`.
+- Each matrix entry must be a single character token.
+- The reshape operation is only valid when the total number of elements stays the same.
+- If the input is malformed, the program writes an error message instead of crashing.
+- The code currently assumes the working directory is set so the input file can be found reliably.
+
+## Project structure
+
+- `Exam3/VazquezExam3.cpp` contains the main program flow
+- `Exam3/Matrix.h` declares the `Matrix` class
+- `Exam3/Matrix.cpp` implements matrix parsing, output, and reshaping
+
+## Expected behavior
+
+- Valid input: the matrix is reshaped and written to `after.txt`
+- Invalid input: a descriptive error message is written to the output file and the program exits with a failure status
+- Invalid reshape request: the program reports that the new dimensions do not preserve the total number of elements

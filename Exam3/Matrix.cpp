@@ -1,7 +1,6 @@
 #include "Matrix.h"
 
-
-// Constructor
+// Constructs a matrix with the requested dimensions.
 Matrix::Matrix(unsigned int num_of_rows, unsigned int num_of_columns)
 	: num_of_rows(num_of_rows), num_of_columns(num_of_columns), data(num_of_rows, vector<char>(num_of_columns)) {}
 
