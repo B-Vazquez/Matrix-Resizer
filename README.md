@@ -29,14 +29,20 @@ Run it from the workspace root so `before.txt` is found:
 ## Example input format
 
 ```text
-3 4
-A B C D
-E F G H
-I J K L
-2 6
+7	6
+
+Z	Y	X	W	V	U
+T	S	R	Q	P	O
+N	M	L	K	J	I
+H	G	F	E	D	C
+B	A	0	1	2	3
+4	5	6	7	8	9
+a	b	c	d	e	f
+
+2	21
 ```
 
-This example describes a `3 x 4` matrix followed by the desired `2 x 6` size.
+This example describes a `7 x 6` matrix followed by the desired `2 x 21` size.
 
 ## Notes and limitations
 
