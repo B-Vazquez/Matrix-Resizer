@@ -14,7 +14,17 @@ After reading the data, the program writes the reshaped matrix to `after.txt`.
 
 ## Build and run
 
-From the workspace root, compile and run the project with your preferred C++ toolchain. In Visual Studio Code, the provided solution can be used to build and run the project.
+From the workspace root, compile the project with:
+
+```sh
+g++ -std=c++17 -Wall -Wextra -pedantic MatrixResizer/main.cpp MatrixResizer/Matrix.cpp -o matrix-resizer
+```
+
+Run it from the workspace root so `before.txt` is found:
+
+```sh
+./matrix-resizer
+```
 
 ## Example input format
 
@@ -39,9 +49,9 @@ This example describes a `3 x 4` matrix followed by the desired `2 x 6` size.
 
 ## Project structure
 
-- `Exam3/VazquezExam3.cpp` contains the main program flow
-- `Exam3/Matrix.h` declares the `Matrix` class
-- `Exam3/Matrix.cpp` implements matrix parsing, output, and reshaping
+- `MatrixResizer/main.cpp` contains the main program flow
+- `MatrixResizer/Matrix.h` declares the `Matrix` class
+- `MatrixResizer/Matrix.cpp` implements matrix parsing, output, and reshaping
 
 ## Expected behavior
 

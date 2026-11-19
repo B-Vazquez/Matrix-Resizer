@@ -2,7 +2,7 @@
 
 // Constructs a matrix with the requested dimensions.
 Matrix::Matrix(unsigned int num_of_rows, unsigned int num_of_columns)
-	: num_of_rows(num_of_rows), num_of_columns(num_of_columns), data(num_of_rows, vector<char>(num_of_columns)) {}
+	: num_of_rows(num_of_rows), num_of_columns(num_of_columns), data(num_of_rows, std::vector<char>(num_of_columns)) {}
 
 // Operators
 
@@ -11,7 +11,7 @@ Matrix::Matrix(unsigned int num_of_rows, unsigned int num_of_columns)
 	@param tempMatrix: A matrix object
 	@return: Input stream after loading the matrix object
 */
-istream& operator >> (istream& in, Matrix& tempMatrix) {
+std::istream& operator >> (std::istream& in, Matrix& tempMatrix) {
 	unsigned int num_rows = 0;
 	unsigned int num_columns = 0;
 
@@ -19,7 +19,7 @@ istream& operator >> (istream& in, Matrix& tempMatrix) {
 		throw std::runtime_error("Error: Invalid input for current matrix size.");
 	}
 
-	vector<vector<char>> tempData(num_rows, vector<char>(num_columns));
+	std::vector<std::vector<char>> tempData(num_rows, std::vector<char>(num_columns));
 	std::string tempString;
 
 	for (unsigned int i = 0; i < num_rows; i++) {
@@ -44,14 +44,17 @@ istream& operator >> (istream& in, Matrix& tempMatrix) {
 	@param tempMatrix: A matrix object
 	@return: Output stream after writing the matrix object
 */
-ostream& operator << (ostream& out, const Matrix& tempMatrix) {
-	out << tempMatrix.num_of_rows << '\t' << tempMatrix.num_of_columns << endl << endl;
+std::ostream& operator << (std::ostream& out, const Matrix& tempMatrix) {
+	out << tempMatrix.num_of_rows << '\t' << tempMatrix.num_of_columns << std::endl << std::endl;
 
 	for (unsigned int i = 0; i < tempMatrix.num_of_rows; i++) {
 		for (unsigned int j = 0; j < tempMatrix.num_of_columns; j++) {
-			out << tempMatrix.data[i][j] << '\t';
+			if (j > 0) {
+				out << '\t';
+			}
+			out << tempMatrix.data[i][j];
 		}
-		out << endl;
+		out << std::endl;
 	}
 	return out;
 }
@@ -67,7 +70,7 @@ void Matrix::reshape(unsigned int new_num_rows, unsigned int new_num_columns) {
 		throw std::runtime_error("Reshape failed: new dimensions do not match the total number of elements.");
 	}
 	else {
-		vector<vector<char>> tempData(new_num_rows, vector<char>(new_num_columns));
+		std::vector<std::vector<char>> tempData(new_num_rows, std::vector<char>(new_num_columns));
 
 		unsigned int i = 0, j = 0; // Used to insert the data from the old matrix into the new matrix
 

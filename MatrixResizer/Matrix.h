@@ -7,10 +7,6 @@
 #include <stdexcept>
 #include <string>
 
-using std::vector;
-using std::istream;
-using std::ostream;
-using std::endl;
 
 class Matrix {
 public:
@@ -21,14 +17,14 @@ public:
 	void reshape(unsigned int, unsigned int); // Reshapes the matrix 
 
 	// Operators
-	friend istream& operator >> (istream&, Matrix&); // Overloads '>>' for "istream >> Matrix"
-	friend ostream& operator << (ostream&, const Matrix&); // Overloads '<<' for "ostream << Matrix"
+	friend std::istream& operator >> (std::istream&, Matrix&); // Overloads '>>' for "istream >> Matrix"
+	friend std::ostream& operator << (std::ostream&, const Matrix&); // Overloads '<<' for "ostream << Matrix"
 
 private:
 	// Data fields
-	vector<vector<char>> data; // Stores the data of the matrix
 	unsigned int num_of_rows; // Stores the number of rows of the matrix
 	unsigned int num_of_columns; // Stores the number of columns of the matrix
+	std::vector<std::vector<char>> data; // Stores the data of the matrix
 };
 
 #endif
