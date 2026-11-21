@@ -62,5 +62,5 @@ This example describes a `7 x 6` matrix followed by the desired `2 x 21` size.
 ## Expected behavior
 
 - Valid input: the matrix is reshaped and written to `after.txt`
-- Invalid input: a descriptive error message is written to the output file and the program exits with a failure status
+- Invalid input: a descriptive error message is written to stderr and the program exits with a failure status
 - Invalid reshape request: the program reports that the new dimensions do not preserve the total number of elements
