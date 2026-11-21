@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 
 *.exe
+
+# Ignore build output of matrix-resizer
+/matrix-resizer
